@@ -7,10 +7,13 @@ import org.jsp.bootcrudrest.service.Studentservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import jakarta.websocket.server.PathParam;
 
 @RestController
 public class Studentcontroler 
@@ -44,5 +47,41 @@ public class Studentcontroler
  {
      service.delete(id);
  }
-
+ @GetMapping("students/{name}")
+public List<Student>fetchbyname(@PathVariable String name)
+{
+	 return service.fetchbyname(name);
+ 
+}
+ @GetMapping("student/{mobile}")
+ public List<Student> fetchbymobile(@PathVariable long mobile)
+ 
+ {
+	 return service.fetchbymobile(mobile);
+ }
+ @GetMapping("students/results/{result}")
+ public List<Student> Result(@PathVariable String result)
+ {
+	 return service.Result(result);
+ }
+// @GetMapping("students/mathematics/{marks}")
+// public List<Student> findByMathsGreater(@PathVariable int marks)
+// {
+//	 return service.findByMathssGreater(marks);
+// }
+// @GetMapping("students/physics/{marks}")
+// public List<Student> findByphysicsGreater(@PathVariable int marks)
+// {
+//	 return service.findByPhysicssGreater(marks);
+// }
+ @GetMapping("students/{subject}/{marks}")
+ public List<Student> findBySubject(@PathVariable String subject,@PathVariable int marks)
+ {
+	 return service.findBySubject(subject,marks);
+ }
+ @GetMapping("studentss/{minmark}/{maxmark}")
+ public List<Student> findByMinPhyAndMaxPhy(@PathVariable int minmark ,@PathVariable int maxmark)
+ {
+	 return  service.findByMinPhyAndMaxPhy(minmark,maxmark);
+ }
 }

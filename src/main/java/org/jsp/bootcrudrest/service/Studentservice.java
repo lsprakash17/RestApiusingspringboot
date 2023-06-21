@@ -1,9 +1,5 @@
 package org.jsp.bootcrudrest.service;
-
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-
 import org.jsp.bootcrudrest.dao.Studentdao;
 import org.jsp.bootcrudrest.dto.Student;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +11,8 @@ public class Studentservice
 {
 	@Autowired
 	Studentdao dao;
+	@Autowired
+	Student dto;
 public Student save(Student student)
 {
 
@@ -69,4 +67,34 @@ public Student fetch(int id){
 public void delete(int id) {
 	dao.delete(id);
 }
+public List<Student> fetchbyname(String name) {
+	return dao.fetchbyname(name);
+}
+public List<Student> fetchbymobile(long mobile) {
+	
+	return dao.fetchbymobile(mobile);
+}
+
+public List<Student> Result(String result) {
+	
+	return dao.Result(result);
+}
+//public List<Student> findByMathssGreater(int marks) {
+// return dao.findByMathsGreater(marks);
+//}
+//public List<Student> findByPhysicssGreater(int marks) {
+//	return dao.findByPhysicsGreater(marks);
+//}
+public List<Student> findBySubject(String sub, int marks) {
+	if(sub.equals("mathematics"))
+		return dao.findByMathsGreater(marks);
+	else if(sub.equals("physics"))
+		return dao.findByPhysicsGreater(marks);
+	else
+		return dao.findByComputerscienceGreater(marks);
+}
+public List<Student> findByMinPhyAndMaxPhy(int minmark, int maxmark) {
+ return dao. findByMinPhyAndMaxPhy(minmark,maxmark);
+}
+
 }
