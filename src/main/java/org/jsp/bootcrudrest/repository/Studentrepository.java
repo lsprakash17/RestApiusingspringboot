@@ -23,11 +23,11 @@ public interface StudentRepository extends JpaRepository<Student, Integer>
 //1 way
 	List<Student> findByPhysicsGreaterThanEqualAndPhysicsLessThanEqual(int minmark, int maxmark);
 //	2 way
-
-	@Query("select x from x where physics between ?1 and ?2")
-	List<Student>  findByPhysicsbetween(int minmark,int maxmark);
-	
-//	3 way
-	List<Student> findByPhysicsBetween(int minmax,int maxmarks);
+//
+//	@Query("select x from x where physics between ?1 and ?2")
+//	List<Student>  findByPhysicsbetween(int minmark,int maxmark);
+//	
+////	3 way
+//	List<Student> findByPhysicsBetween(int minmax,int maxmarks);
 
 }

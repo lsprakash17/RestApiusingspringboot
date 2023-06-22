@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -64,16 +65,16 @@ public List<Student>fetchbyname(@PathVariable String name)
  {
 	 return service.Result(result);
  }
-// @GetMapping("students/mathematics/{marks}")
-// public List<Student> findByMathsGreater(@PathVariable int marks)
-// {
+//@GetMapping("students/mathematics/{marks}")
+//public List<Student> findByMathsGreater(@PathVariable int marks)
+//{
 //	 return service.findByMathssGreater(marks);
-// }
-// @GetMapping("students/physics/{marks}")
-// public List<Student> findByphysicsGreater(@PathVariable int marks)
-// {
+//}
+//@GetMapping("students/physics/{marks}")
+//public List<Student> findByphysicsGreater(@PathVariable int marks)
+//{
 //	 return service.findByPhysicssGreater(marks);
-// }
+//}
  @GetMapping("students/{subject}/{marks}")
  public List<Student> findBySubject(@PathVariable String subject,@PathVariable int marks)
  {
@@ -84,4 +85,10 @@ public List<Student>fetchbyname(@PathVariable String name)
  {
 	 return  service.findByMinPhyAndMaxPhy(minmark,maxmark);
  }
+ @PutMapping("studentss/{id}")
+ public Student edit(@PathVariable int id,@RequestBody Student student )
+ {
+	 return service.updateUser(id, student);
+ }
+ 
 }

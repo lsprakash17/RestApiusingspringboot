@@ -2,6 +2,7 @@ package org.jsp.bootcrudrest.service;
 import java.util.List;
 import org.jsp.bootcrudrest.dao.Studentdao;
 import org.jsp.bootcrudrest.dto.Student;
+import org.jsp.bootcrudrest.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,9 @@ public class Studentservice
 	Studentdao dao;
 	@Autowired
 	Student dto;
+	@Autowired
+	StudentRepository repository;
+	
 public Student save(Student student)
 {
 
@@ -96,5 +100,27 @@ public List<Student> findBySubject(String sub, int marks) {
 public List<Student> findByMinPhyAndMaxPhy(int minmark, int maxmark) {
  return dao. findByMinPhyAndMaxPhy(minmark,maxmark);
 }
-
+public Student updateUser(int id, Student student) {
+	Student existingstudent = repository.findById(id).orElse(null);
+	existingstudent.setMathematics(student.getMathematics());
+	existingstudent.setComputerscience(student.getComputerscience());
+	existingstudent.setPhysics(id);
+	int total=(student.getMathematics()+student.getComputerscience()+student.getPhysics());
+	existingstudent.setTotal(total);
+	double percentage=total/3.0;
+	existingstudent.setPercentage(percentage);
+	if(existingstudent.getPhysics() <35 || existingstudent.getComputerscience()<35 || existingstudent.getMathematics()<35)
+	{
+		student.setResult("Fail");
+	}
+	else {
+		if(percentage>85)
+			existingstudent.setResult("Distinction");
+		else if(percentage>60)
+			existingstudent.setResult("First Class");
+		else
+			existingstudent.setResult("Second Class");
+	}	
+	return dao.save(existingstudent);
+}
 }
