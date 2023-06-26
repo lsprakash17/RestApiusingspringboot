@@ -2,6 +2,7 @@ package org.jsp.bootcrudrest.dao;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import org.jsp.bootcrudrest.dto.Student;
 import org.jsp.bootcrudrest.repository.StudentRepository;
@@ -29,12 +30,12 @@ public class Studentdao
 	}
 
 	public Student fetch(int id) {
-//		Optional<Student> op=repository.findById(id);
-//		if(op.isPresent())
-//			return op.get();
-//		else
-//			return null;
-		return repository.findById(id).orElse(null);
+		Optional<Student> op=repository.findById(id);
+		if(op.isPresent())
+			return op.get();
+		else
+			return null;
+//		return repository.findById(id).orElse(null);
 	}
 
 	public void delete(int id) {

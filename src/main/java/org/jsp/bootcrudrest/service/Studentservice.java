@@ -83,7 +83,8 @@ public class Studentservice {
 	public ResponseStructure<Student> fetch(int id) {
 		ResponseStructure<Student> response = new ResponseStructure<>();
 		Student student = dao.fetch(id);
-		if (student == null) {
+		if (student == null )
+		{
 			response.setMessage("No data found");
 			response.setStatus(HttpStatus.NOT_FOUND.value());
 			return response;

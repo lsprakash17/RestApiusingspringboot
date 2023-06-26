@@ -1,6 +1,6 @@
 package org.jsp.bootcrudrest.controler;
 
-import java.util.List;
+import java.util.*;
 
 import org.jsp.bootcrudrest.dto.Student;
 import org.jsp.bootcrudrest.helper.ResponseStructure;
@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import jakarta.websocket.server.PathParam;
 
 @RestController
 public class Studentcontroler 
@@ -66,16 +64,6 @@ public ResponseStructure<List<Student>> fetchbyname(@PathVariable String name)
  {
 	 return service.Result(result);
  }
-//@GetMapping("students/mathematics/{marks}")
-//public List<Student> findByMathsGreater(@PathVariable int marks)
-//{
-//	 return service.findByMathssGreater(marks);
-//}
-//@GetMapping("students/physics/{marks}")
-//public List<Student> findByphysicsGreater(@PathVariable int marks)
-//{
-//	 return service.findByPhysicssGreater(marks);
-//}
  @GetMapping("students/{subject}/{marks}")
  public ResponseStructure<List<Student>> findBySubject(@PathVariable String subject,@PathVariable int marks)
  {
@@ -91,5 +79,4 @@ public ResponseStructure<List<Student>> fetchbyname(@PathVariable String name)
  {
 	 return service.updateUser(id, student);
  }
- 
 }

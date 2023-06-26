@@ -1,10 +1,10 @@
 package org.jsp.bootcrudrest.repository;
 
-import java.util.List;
+import java.util.*;
 
 import org.jsp.bootcrudrest.dto.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
+//import org.springframework.data.jpa.repository.Query;
 
 public interface StudentRepository extends JpaRepository<Student, Integer>
 {
